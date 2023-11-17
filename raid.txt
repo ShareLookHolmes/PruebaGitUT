@@ -1,0 +1,11 @@
+sudo yum install mdadm
+lsblk
+sudo mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/xvdj /dev/xvdn
+mdadm --detail /dev/md0
+cat /proc/mdstat
+sudo mkfs.ext4 /dev/md0
+
+sudo mkdir /raid0
+sudo mount /dev/md0 /raid0
+
+df -h
